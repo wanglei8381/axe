@@ -1,0 +1,111 @@
+
+
+######### chrome #########
+
+var chromeEvent = {
+altKey: false, //alt是否按住
+bubbles: true, //指示事件是否是起泡事件类型
+button: 0, // 0左键，1中建，2右键
+buttons: 0,
+cancelBubble: false,//事件是否起泡。false 起泡
+cancelable: true,//是否可以用 preventDefault() 方法取消事件。true 可以
+charCode: 0,
+clientX: 201,
+clientY: 142,
+ctrlKey: false,
+currentTarget: 'div.panel.panel-default',
+dataTransfer: null,
+defaultPrevented: false,
+detail: 1,
+eventPhase: 3,//返回事件传播的当前阶段。它的值是1,2,3，它们分别表示捕获阶段、正常事件派发和起泡阶段。
+fromElement: null,
+keyCode: 0,
+layerX: 201,
+layerY: 142,
+metaKey: false,
+movementX: 0,
+movementY: 0,
+offsetX: 50,
+offsetY: 30,
+pageX: 201,
+pageY: 142,
+path: Array[7],
+relatedTarget: null,
+returnValue: true,
+screenX: 201,
+screenY: 203,
+shiftKey: false,
+srcElement: 'button.btn.btn-default',
+target: 'button.btn.btn-default',
+timeStamp: 1440400598315,
+toElement: 'button.btn.btn-default',
+type: "click",
+view: Window,
+webkitMovementX: 0,
+webkitMovementY: 0,
+which: 1,
+x: 201,
+y: 142
+}
+
+######### firefox #########
+var foxEvent = {
+altKey:false,
+bubbles:true,
+button:0,
+buttons:0,
+cancelBubble:false,
+cancelable:true,
+clientX:180,
+clientY:128,
+ctrlKey:false,
+currentTarget:'div.panel.panel-default',
+defaultPrevented:false,
+detail:1,
+eventPhase:1,
+explicitOriginalTarget:'button.btn.btn-default',
+isChar:false,
+isTrusted:true,
+layerX:180,
+layerY:128,
+metaKey:false,
+mozInputSource:1,
+mozMovementX:180,
+mozMovementY:207,
+mozPressure:0,
+offsetX:28,
+offsetY:15,
+originalTarget:'button.btn.btn-default',
+pageX:180,
+pageY:128,
+rangeOffset:3,
+rangeParent:'TextNode textContent="click me"',
+region:"",
+relatedTarget:null,
+screenX:180,
+screenY:199,
+shiftKey:false,
+target:'button.btn.btn-default',
+timeStamp:23243103,
+type:"click",
+view:'Window shijian.html',
+which:1
+};
+
+
+var touch =
+{
+  clientX:56,
+  clientY:131,
+  pageX:56,
+  pageY:131,
+  screenX:56,
+  screenY:131,
+  webkitForce:29836802260992,
+  identifier:0,
+  webkitRadiusX:1458777208,
+  webkitRadiusY:0,
+  webkitRotationAngle:57653325725696,
+  target:'[object HTMLDivElement]'
+}
+

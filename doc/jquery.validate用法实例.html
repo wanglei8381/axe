@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>form validate</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/validate.css" charset="utf-8">
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <form id="firstForm">
+          <div class="col-md-12">
+            <input type="text" name="name" id="name" placeholder="用户名" class="form-control"/>
+          </div>
+          <div class="col-md-12">
+            <input type="password" name="password" id="password" placeholder="密码" class="form-control"/>
+          </div>
+          <div class="col-md-12">
+            <input type="password" name="confirm_password" placeholder="确认密码" class="form-control"/>
+          </div>
+          <div class="col-md-12">
+            <input type="text" name="age" placeholder="年龄" class="form-control"/>
+          </div>
+          <div class="col-md-12">
+            <input type="text" name="score" placeholder="身体得分" class="form-control"/>
+          </div>
+          <div class="col-md-12">
+            <input type="text" name="email" placeholder="邮箱" class="form-control"/>
+          </div>
+          <div class="col-md-12">
+            <input type="text" name="url" placeholder="网址" class="form-control"/>
+          </div>
+          <div class="col-md-12">
+            <input type="radio" name="sex" value="0"/>男
+            <input type="radio" name="sex" value="1"/>女
+          </div>
+          <div class="col-md-12">
+            <input type="checkbox" name="feeling" value="0"/>好
+            <input type="checkbox" name="feeling" value="1"/>不好
+            <input type="checkbox" name="feeling" value="1"/>还不错
+            <input type="checkbox" name="feeling" value="1"/>好极了
+            <input type="checkbox" name="feeling" value="1"/>糟透了
+          </div>
+          <div class="col-md-12">
+            <select name="birth" id="">
+              <option value="">出生</option>
+              <option value="1">1991</option>
+              <option value="2">1992</option>
+              <option value="3">1993</option>
+            </select>
+          </div>
+          <div class="col-md-12">
+            <button class="btn btn-success">Submit</button>
+            <button class="btn btn-success" id="reset">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/jquery.validate.min.js"></script>
+<script src="../js/lib/jquery.validate.cn.js"></script>
+<script>
+  /**
+   * 参考
+   * http://www.w3cschool.cc/jquery/jquery-plugin-validate.html
+   * @type {*|jQuery}
+   */
+  var validator = $('#firstForm').validate({
+    debug:true,
+    ignore: "radio",
+    submitHandler:function(form){
+      alert("submitted");
+    },
+    rules:{
+      name:{
+        required:true,
+        minlength:2,
+        maxlength:10,
+        remote:{
+          type: 'post',
+          url: 'validate.json'
+        }
+      },
+      password:{
+        required:true,
+        passwordValidate:true
+      },
+      confirm_password:{
+        equalTo:'#password'
+      },
+      email:{
+        required:true,
+        email:true,
+        rangelength:[6,30]
+      },
+      age:{
+        required:true,
+        digits:true,
+        min:18,
+        max:32
+      },
+      score:{
+        required:true,
+        number:true,
+        range:[60,100]
+      },
+      url:{
+        required:true,
+        url:true
+      },
+      sex:{
+        required:true
+      },
+      feeling:{
+        required:true,
+        minlength:2,
+        maxlength:3
+      },
+      birth:{
+        required:true
+      }
+    }/*,
+     errorElement:'span',
+     wrapper:'li',
+     errorClass:'error'*/
+  });
+  $('#reset').click(function(){
+    validator.resetForm();
+  });
+  $.validator.addMethod('passwordValidate',function(val,ele){
+    return /@+/.test(val);
+  },'密码格式不正确');
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vibrate</title>
+  <style>
+    * { margin: 0; padding: 0; }
+    a { height: 50px; line-height: 50px; text-align: center; display: block; margin: 10px; background: #04be02; color: #fff; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <script src="../lib/underscore.js"></script>
+  <script src="../src/appcan.js"></script>
+  <script src="../src/axe.device.js"></script>
+  <a class="shock_bell" href="javascript:bellBtnClick(1000);">震动1秒</a>
+  <a class="shock_bell" href="javascript:bellBtnClick(3000);">震动2秒</a>
+  <a class="shock_bell" href="javascript:bellBtnClick([1000,500,1000]);">交替震动</a>
+  <a class="shock_bell" href="javascript:cancal();">取消震动</a>
+  <a href="javascript:window.location.reload();">刷新</a>
+  <p id="navigator"></p>
+<script>
+  function bellBtnClick(time) {
+    if(!appcan.device.vibrate(time)) {
+      alert('不支持震动！');
+      var str = ''
+      for(var key in navigator) {
+        str += key + '<br>';
+      }
+      document.getElementById('navigator').innerHTML = str;
+    }
+  }
+
+  function cancal() {
+    if(!appcan.device.cancalVibrate()) {
+      alert('不支持震动！');
+    }
+  }
+</script>
+</body>
+</html>

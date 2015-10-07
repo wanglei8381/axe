@@ -1,0 +1,30 @@
+git常用命令：
+//初始化git仓库
+git init
+//添加文件到stage
+git add filename       git add *   git add *.js等
+//提交
+git commit -m "注释"
+//查看状态
+git status
+//查看提交日志
+git log      git log --pretty=oneline
+//查看操作日志
+git reflog
+//查看不同
+git diff 文件名   git diff HEAD -- 文件名
+git diff HEAD -- readme.txt  和版本库对比
+git diff  -- readme.txt   和暂存区对比
+//版本回退
+git reset --hard HEAD^      git reset --hard commit的id
+git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区
+//撤销修改
+git checkout -- 文件名
+//删除文件
+git rm 文件名
+//生成ssh key
+ssh-keygen -t rsa -C "wanglei8381@163.com"
+//添加远程仓库
+git remote add origin git@github.com:wanglei8381/demo.git
+关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
+此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；

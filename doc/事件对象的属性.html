@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <title>js事件</title>
+  <style>
+    .u-img {
+      height: 480px;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">js事件机制</div>
+    <div class="panel-body">
+      事件从根节点开始，逐级派送到子节点，若节点绑定了事件动作，则执行动作，然后继续走，这个阶段称为“捕获阶段(Capture)”；
+      执行完捕获阶段后，事件由子节点往根节点派送，若节点绑定了事件动作，则执行动作，然后继续走，这个阶段称为“冒泡阶段(Bubble)”。
+    </div>
+    <button class="btn btn-default">click me</button>
+    <p id="info"></p>
+    <img class="u-img" src="images/pos.png" />
+    <div class="panel-body">
+      js位置有关的属性之间的关系<br>
+      screenX/screenY 点击点到电脑屏幕左上角的距离<br>
+      clientX/clientY 点击点到浏览器左上角的距离（除去工具栏的）<br>
+      pageX/pageY 点击点到页面（html）左上角的距离，其实等于clientY +scrollTop 的距离<br>
+      offsetX/offsetY 点击点到事件源左上角的距离
+    </div>
+    <button class="btn btn-default">click me</button>
+    <p id="info2"></p>
+    <div class="panel-body">
+      js event有用的属性<br>
+      button: 0, // 0左键，1中建，2右键<br>
+      currentTarget //当前监听的元素<br>
+      eventPhase: 3,//返回事件传播的当前阶段。它的值是1,2,3，它们分别表示捕获阶段、正常事件派发和起泡阶段。（IE1,4,2）<br>
+      path：Array //路径<br>
+      srcElement/target: //事件源对象 <br>
+      timeStamp:1440400598315 //时间戳
+    </div>
+  </div>
+</div>
+<script>
+  var btn = document.getElementsByClassName('btn');
+  var panel = document.getElementsByClassName('panel')[0];
+  var info = document.getElementById('info');
+  var info2 = document.getElementById('info2');
+  function show(e) {
+    var html = 'screenX:'+ e.screenX+' , screenY:'+ e.screenY+' <br>';
+    html += 'clientX:'+ e.clientX+' , clientY:'+ e.clientY+' <br>';
+    html += 'x:'+ e.x+' , y:'+ e.y+' <br>';
+    html += 'layerX:'+ e.layerX+' ,  layerY:'+ e.layerY+' <br>';
+    html += 'pageX:'+ e.pageX+' ,  pageY:'+ e.pageY+' <br>';
+    html += 'scrollTop:'+ document.body.scrollTop+' , scrollLeft:'+ document.body.scrollLeft+' <br>';
+    html += 'offsetX:'+ e.offsetX+' , offsetY:'+ e.offsetY+' <br>';
+    info.innerHTML = html;
+  }
+  panel.addEventListener('click', function(e){
+    alert('你的城市没有一扇窗'+arguments.length);
+  },false);
+  each(btn, function(obj,i){
+    switch(i) {
+      case 0:
+        obj.addEventListener('click', function(e){
+          //e.stopPropagation();//阻止事件冒泡
+          //e.stopImmediatePropagation();//除了阻止冒泡外还阻止自身的其它监听事件
+          e.preventDefault();//阻止它的默认行为的发生而发生其他的事情。
+          show(e);
+        },false);
+        break;
+      case 1:
+        obj.addEventListener('click', function(e){
+          var html = '<h3>event对象的属性</h3><br>';
+          for(var key in e) {
+            html += key + ':' + e[key] + '<br>';
+          }
+          info2.innerHTML = html;
+        },false);
+        break;
+      case 2:
+        break;
+    }
+  });
+  function each(arr,callback){
+    for(var i = 0; i < arr.length; i++) {
+      callback(arr[i],i,arr);
+    }
+  }
+</script>
+</body>
+</html>
