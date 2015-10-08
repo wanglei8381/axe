@@ -161,8 +161,8 @@ axe.define('detect', function(exports,module){
     return false;
   };
 
-  //判断是否支持css3d,（_.once执行一次）
-  var supports3d = _.once(function() {
+  //判断是否支持css3d
+  var supports3d = function() {
     var div = document.createElement('div'),
       ret = false,
       properties = ['perspectiveProperty', 'WebkitPerspective'];
@@ -184,7 +184,7 @@ axe.define('detect', function(exports,module){
       div.parentNode.removeChild(div);
     }
     return ret;
-  });
+  };
 
   //事件的支持度检测
   var events = {
@@ -193,7 +193,15 @@ axe.define('detect', function(exports,module){
 
   //css的支持度检测
   var css = {
-    support3d: supports3d()
+    support3d: (function(){
+      var supports = null;
+      if(!supports){
+        supports = supports3d();
+      }
+      return function(){
+        return supports;
+      };
+    })()
   };
 
   //Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/534.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13

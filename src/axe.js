@@ -6,7 +6,10 @@
  * 主要针对于移动端的应用
  * 强依赖underscore，backbone和zepto或jQuery
  */
-//var _ = require('../lib/underscore');
+
+require('./axe.array');
+require('./axe.object');
+
 (function(){
 
   //在浏览器中是window，在node中是exports
@@ -60,16 +63,10 @@
     return uuid;
   }
 
-  //是否是window对象
-  var isWindow = function(obj){
-    return obj != null && obj == obj.window;
-  };
   //是否是纯对象
-  var isPlainObject = function (obj) {
-    return _.isObject(obj) && !isWindow(obj) && Object.getPrototypeOf(obj) == Object.prototype;
-  };
+  var isPlainObject = Object.isPlainObject;
   //是否是数组
-  var isArray = _.isArray;
+  var isArray = Array.isArray;
 
   //扩展对象
   var extend = function(target, source, deep) {
@@ -98,14 +95,14 @@
 
   //定义一个模块，或者插件
   _alias.define = function(name,factory){
-    if(_.isFunction(name)){
+    if(Object.isFunction(name)){
       factory = name;
       name = '';
     }
-    if(!name || !_.isString(name)){
+    if(!name || !Object.isString(name)){
       throw new Error(errorInfo.moduleName);
     }
-    if(!_.isFunction(factory)){
+    if(!Object.isFunction(factory)){
       throw new Error(errorInfo.moduleFactory);
     }
     var module = {exports:{}};
@@ -128,12 +125,12 @@
     if(!name){
       throw new Error(errorInfo.moduleName);
     }
-    if(!_.isString(name)){
+    if(!Object.isString(name)){
       return name;
     }
     var res = _alias[name];
     /*
-    if(_.isArray(res) && res.length == 1){
+    if(Object.isArray(res) && res.length == 1){
       return res[0];
     }
     */
@@ -167,29 +164,11 @@
     return str ? decodeURIComponent(str) : '';
   };
 
-  var property = function(key) {
-    return function(obj) {
-      return obj == null ? void 0 : obj[key];
-    };
-  };
-
-  var MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
-
-  var getLength = property('length');
-
-  var isArrayLike = function(collection) {
-    var length = getLength(collection);
-    return typeof length == 'number' && length >= 0 && length <= MAX_ARRAY_INDEX;
-  };
-
   _alias.extend({
-    isPlainObject:isPlainObject,
     getUID:getUID,
     getUUID:getUUID,
     encode:encode,
-    decode:decode,
-    property:property,
-    isArrayLike:isArrayLike
+    decode:decode
   });
 
 })();

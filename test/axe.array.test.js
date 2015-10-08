@@ -9,7 +9,12 @@ var arr = [];
 
 //console.log(arr.isEmpty());
 
-arr.push(1,4,3,5);
+arr.add();
+console.log(arr);
+arr.add(5);
+console.log(arr);
+arr.add(1,4,3,3,5);
+console.log(arr);
 
 //arr.reverse();
 
@@ -35,3 +40,31 @@ var ArrayProto = Array.prototype;
 
 console.log(!('forEach' in ArrayProto));
 */
+//0,1,2,3,4
+//1,4,3,3,5
+var handlerIndex = function(dir, arr, item,pos) {
+  var i = parseInt(pos,10) || 0, length = arr.length;
+  if(i < 0) {
+    i = i + length;
+  }
+  if(i < 0) {
+    i = 0;
+  }
+  i = i >= length ? length - 1 : i;
+  for(;i >= 0 && i < length; i += dir) {
+    if(arr[i] === item) return i;
+  }
+  return -1;
+};
+
+/*
+console.log(handlerIndex(-1,arr,3,-4));
+console.log(arr.lastIndexOf(3,-4));
+*/
+
+/*
+console.log(handlerIndex(1,arr,3,-4));
+console.log(arr.indexOf(3,-4));
+*/
+
+

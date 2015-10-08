@@ -11,10 +11,10 @@ axe.define('device', function (exports, module, _alias) {
   var vibrate = function (time) {
     try {
 
-      if (!_.isArray(time)) {
+      if (!Object.isArray(time)) {
         time = [time];
       }
-      _.each(time, function (item, i) {
+      time.each(function (item, i) {
         item = parseInt(item, 10);
         item = isNaN(item) ? 0 : item;
         time[i] = item;
@@ -53,7 +53,7 @@ axe.define('device', function (exports, module, _alias) {
     }
 
     var SHAKE_THRESHOLD = 600, DIFF_TIME = 300;
-    if(_alias.isPlainObject(options)) {
+    if(Object.isPlainObject(options)) {
       var speed = +options.speed;
       if(speed) {
         SHAKE_THRESHOLD = speed;
@@ -79,7 +79,7 @@ axe.define('device', function (exports, module, _alias) {
         z = acceleration.z;
         var speed = Math.abs(x +y + z - lastX - lastY - lastZ) / diffTime * 10000;
         if (speed > SHAKE_THRESHOLD) {
-          if(_.isFunction(callback)) {
+          if(Object.isFunction(callback)) {
             callback();
           }
           document.body.style.backgroundColor = color[Math.round(Math.random() * 10) % 6];
