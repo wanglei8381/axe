@@ -28,3 +28,10 @@ ssh-keygen -t rsa -C "wanglei8381@163.com"
 git remote add origin git@github.com:wanglei8381/demo.git
 关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
 此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+
+//git别名
+git config --global alias.ch checkout
+git config --global alias.co commit
+git config --global alias.br branch
+git config --global alias.st status
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
