@@ -68,3 +68,10 @@ console.log(arr.indexOf(3,-4));
 */
 
 
+
+var arr = [{name:'wanglei'}];
+arr.each(function(item){
+  item.age = 23;
+});
+
+console.log(arr);
