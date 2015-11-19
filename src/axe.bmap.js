@@ -33,8 +33,8 @@ axe.define('device', function (exports, module, _alias) {
       return a
     },
     lat: function(a, b, c){
-      b != p && (a = Math.max(a, b));
-      c != p && (a = Math.min(a, c));
+      b != null && (a = Math.max(a, b));
+      c != null && (a = Math.min(a, c));
       return a
     },
     toRadian: function(a){
