@@ -205,6 +205,19 @@
 
   }
 
+  //去重
+  definePropertyHandler('distinct', function (callback) {
+    var result = [], hash = {};
+    for (var i = 0, length = this.length; i < length; i++) {
+      var elem = this[i];
+      if (!hash[elem]) {
+        result.push(elem);
+        hash[elem] = true;
+      }
+    }
+    return result;
+  });
+
   /**********************
    * 数组的位置
    *********************/
@@ -249,5 +262,6 @@
     if (this.indexOf(item) !== -1) return true;
     return false;
   });
+
 
 })();

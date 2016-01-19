@@ -20,28 +20,36 @@ axe.define('device', function (exports, module, _alias) {
         return c
       }
     },
-    handle: function(pointA, pointB){
+    handle: function (pointA, pointB) {
       pointA.lng = this.lng(pointA.lng, -180, 180);
       pointA.lat = this.lat(pointA.lat, -74, 74);
       pointB.lng = this.lng(pointB.lng, -180, 180);
       pointB.lat = this.lat(pointB.lat, -74, 74);
       return this.calculate(this.toRadian(pointA.lng), this.toRadian(pointB.lng), this.toRadian(pointA.lat), this.toRadian(pointB.lat))
     },
-    lng: function(a, b, c){
+    lng: function (a, b, c) {
       for (; a > c;) a -= c - b;
       for (; a < b;) a += c - b;
       return a
     },
-    lat: function(a, b, c){
+    lat: function (a, b, c) {
       b != null && (a = Math.max(a, b));
       c != null && (a = Math.min(a, c));
       return a
     },
-    toRadian: function(a){
+    toRadian: function (a) {
       return Math.PI * a / 180;
     },
-    calculate: function(a, b, c, d){
+    calculate: function (a, b, c, d) {
       return this.EARTH_RADIUS * Math.acos(Math.sin(c) * Math.sin(d) + Math.cos(c) * Math.cos(d) * Math.cos(b - a))
+    },
+    translate: function (x, y) {
+      $.get('http://api.map.baidu.com/ag/coord/convert?from=0&to=4&x=' + x + '&y=' + y, function (data) {
+        if (data.error == 0) {
+          var lng = new Buffer(data.x, 'base64').toString();
+          var lat = new Buffer(data.y, 'base64').toString();
+        }
+      });
     }
 
   };
