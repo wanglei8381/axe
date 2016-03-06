@@ -1,4 +1,4 @@
-require('./baseTest');
+//require('./baseTest');
 require('../src/axe.array.js');
 require('../src/axe.object.js');
 
@@ -22,4 +22,7 @@ var obj = {
   obj: {}
 };
 
-console.log(Object.keys(obj));
+//console.log(Object.keys(obj));
+
+console.log(Object.isNumber('1'));
+

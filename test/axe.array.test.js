@@ -68,3 +68,10 @@ var handlerIndex = function (dir, arr, item, pos) {
  */
 
 
+
+var arr = [{name:'wanglei'}];
+arr.each(function(item){
+  item.age = 23;
+});
+
+console.log(arr);

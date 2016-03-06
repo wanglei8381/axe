@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <title>JSON 格式化</title>
+
+  <!-- 新 Bootstrap 核心 CSS 文件 -->
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://v3.bootcss.com/assets/css/docs.min.css">
+  <style type="text/css">
+    .form-controller {
+      width:100%;
+      max-width:100%;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button" style="width:100%" class="btn btn-success" id="format">格式化</button>
+    </div>
+  </div>
+  <div class="row" style="margin-top:30px">
+    <div class="col-md-6">
+      <textarea class="form-controller" id="ta" placeholder="输入JSON文本"></textarea>
+    </div>
+    <div class="col-md-6">
+      <div class="zero-clipboard"><span class="btn-clipboard">复制</span></div>
+      <textarea class="form-controller" id="content"></textarea>
+    </div>
+  </div>
+</div><!-- /.container -->
+
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script>
+  $('.form-controller').height($(window).height()-100);
+  $('#format').click(function(){
+    var txt = $('#ta').val();
+    var html = format(txt);
+    if(html){
+      $('#content').val(html);
+    }
+  });
+  $('.btn-clipboard').click(function(){
+    window.clipboardData.setData('text',$('#content').val());
+  });
+  /* 格式化JSON源码(对象转换为JSON文本) */
+  function format(txt, compress/*是否为压缩模式*/) {
+    var indentChar = '    ';
+    if (/^\s*$/.test(txt)) {
+      alert('数据为空,无法格式化! ');
+      return;
+    }
+    try {
+      var data = eval('(' + txt + ')');
+    }catch (e) {
+      alert('数据源语法错误,格式化失败! 错误信息: ' + e, 'err');
+      return;
+    };
+    var draw = [], last = false, This = this, line = compress ? '' : '\n', nodeCount = 0, maxDepth = 0;
+
+    var notify = function (name, value, isLast, indent/*缩进*/, formObj) {
+      nodeCount++;
+      /*节点计数*/
+      for (var i = 0, tab = ''; i < indent; i++)tab += indentChar;
+      /* 缩进HTML */
+      tab = compress ? '' : tab;
+      /*压缩模式忽略缩进*/
+      maxDepth = ++indent;
+      /*缩进递增并记录*/
+      if (value && value.constructor == Array) {/*处理数组*/
+        draw.push(tab + (formObj ? ('"' + name + '":') : '') + '[' + line);
+        /*缩进'[' 然后换行*/
+        for (var i = 0; i < value.length; i++)
+          notify(i, value[i], i == value.length - 1, indent, false);
+        draw.push(tab + ']' + (isLast ? line : (',' + line)));
+        /*缩进']'换行,若非尾元素则添加逗号*/
+      } else if (value && typeof value == 'object') {/*处理对象*/
+        draw.push(tab + (formObj ? ('"' + name + '":') : '') + '{' + line);
+        /*缩进'{' 然后换行*/
+        var len = 0, i = 0;
+        for (var key in value)len++;
+        for (var key in value)notify(key, value[key], ++i == len, indent, true);
+        draw.push(tab + '}' + (isLast ? line : (',' + line)));
+        /*缩进'}'换行,若非尾元素则添加逗号*/
+      } else {
+        if (typeof value == 'string')value = '"' + value + '"';
+        draw.push(tab + (formObj ? ('"' + name + '":') : '') + value + (isLast ? '' : ',') + line);
+      }
+      ;
+    };
+    var isLast = true, indent = 0;
+    notify('', data, isLast, indent, false);
+    return draw.join('');
+  }
+</script>
+</body>
+</html>

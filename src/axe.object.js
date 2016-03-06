@@ -83,7 +83,12 @@
   Object.isEmpty = function (obj) {
     if (obj == null) return true;
     if (Object.isArrayLike(obj) && (Object.isArray(obj) || Object.isString(obj) || Object.isArguments(obj))) return obj.length === 0;
-    return Object.keys(obj).length === 0;
+    if (Object.isObject(obj)) return Object.keys(obj).length === 0;
+    return false;
+  };
+
+  Object.isNaN = function(obj) {
+    return Object.isNumber(obj) && obj !== +obj;
   };
 
   //获取obj对象的属性的名称,type为false时，检索obj拥有的和继承的所有属性的名称。

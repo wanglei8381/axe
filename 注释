@@ -1,0 +1,15 @@
+#一般的注释规则
+@param {Function} fn
+@param {String|Array} name
+@return {APP}
+@public
+@private 指示一个类或函数是私有的。
+@argument 指定参数名和说明来描述一个函数参数
+@deprecated 指示一个函数已经废弃，不建议使用，而且在将来版本的代码中可能会彻底删除。要避免使用这段代码。
+@constructor 明确一个函数是某个类的构造函数。
+@type 指定函数的返回类型。
+@class 提供类的有关信息，用在构造函数的文档中。
+@version 指定发布版本。
+@author 指示代码的作者。
+@example 函数使用示例
+@type 指定函数的返回类型。
