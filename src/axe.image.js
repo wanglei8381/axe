@@ -5,7 +5,7 @@
  * 图片操作
  */
 
-axe.define('image', function(exports,module){
+axe.define('image', function (exports, module) {
 
   var each = function (arr, callback) {
     var i;
@@ -36,7 +36,7 @@ axe.define('image', function(exports,module){
       }
     }
 
-    if(typeof urls === 'string') {
+    if (typeof urls === 'string') {
       urls = [urls];
     }
 

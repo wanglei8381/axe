@@ -5,7 +5,7 @@
  * 设备检测
  */
 
-axe.define('detect', function(exports,module){
+axe.define('detect', function (exports, module) {
 
   var os = {};
   var browser = {};
@@ -53,7 +53,7 @@ axe.define('detect', function(exports,module){
     os.version = iphone[2].replace(/_/g, '.');
   }
 
-  if (ipad){
+  if (ipad) {
     os.name = 'ipad';
     os.ios = os.ipad = true;
     os.version = ipad[2].replace(/_/g, '.');
@@ -138,7 +138,7 @@ axe.define('detect', function(exports,module){
       browser.version = safari[1];
     }
   }
-  if(osx){
+  if (osx) {
     os.name = 'osx';
     os.version = osx[1].split('_').join('.');
   }
@@ -149,29 +149,29 @@ axe.define('detect', function(exports,module){
 
   os.tablet = !!(ipad || playbook || (android && !ua.match(/Mobile/)) ||
   (firefox && ua.match(/Tablet/)) || (ie && !ua.match(/Phone/) && ua.match(/Touch/)));
-  os.phone  = !!(!os.tablet && !os.ipod && (android || iphone || webos || blackberry || bb10 ||
+  os.phone = !!(!os.tablet && !os.ipod && (android || iphone || webos || blackberry || bb10 ||
   (chrome && ua.match(/Android/)) || (chrome && ua.match(/CriOS\/([\d.]+)/)) ||
   (firefox && ua.match(/Mobile/)) || (ie && ua.match(/Touch/))));
 
   //检查是否支持touch事件
-  var checkTouchEvent = function(){
-    if(('ontouchstart' in window) || window.DocumentTouch && window.document instanceof window.DocumentTouch) {
+  var checkTouchEvent = function () {
+    if (('ontouchstart' in window) || window.DocumentTouch && window.document instanceof window.DocumentTouch) {
       return true;
     }
     return false;
   };
 
   //判断是否支持css3d
-  var supports3d = function() {
+  var supports3d = function () {
     var div = document.createElement('div'),
       ret = false,
       properties = ['perspectiveProperty', 'WebkitPerspective'];
-    for (var i = properties.length - 1; i >= 0; i--){
+    for (var i = properties.length - 1; i >= 0; i--) {
       ret = ret ? ret : div.style[properties[i]] !== undefined;
     }
 
     //如果webkit 3d transforms被禁用,虽然语法上检查没问题，但是还是不支持
-    if (ret){
+    if (ret) {
       var st = document.createElement('style');
       // webkit allows this media query to succeed only if the feature is enabled.
       // "@media (transform-3d),(-o-transform-3d),(-moz-transform-3d),(-ms-transform-3d),(-webkit-transform-3d),(modernizr){#modernizr{height:3px}}"
@@ -188,17 +188,17 @@ axe.define('detect', function(exports,module){
 
   //事件的支持度检测
   var events = {
-    supportTouch:checkTouchEvent()
+    supportTouch: checkTouchEvent()
   };
 
   //css的支持度检测
   var css = {
-    support3d: (function(){
+    support3d: (function () {
       var supports = null;
-      if(!supports){
+      if (!supports) {
         supports = supports3d();
       }
-      return function(){
+      return function () {
         return supports;
       };
     })()
@@ -206,11 +206,11 @@ axe.define('detect', function(exports,module){
 
   //Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/534.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13
   module.exports = {
-    browser:browser,
-    os:os,
-    event:events,
-    css:css,
-    ua:ua
+    browser: browser,
+    os: os,
+    event: events,
+    css: css,
+    ua: ua
   };
 
 });

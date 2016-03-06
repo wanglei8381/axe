@@ -5,6 +5,6 @@
  * 事件操作
  */
 
-axe.define('event', function(exports,module){
+axe.define('event', function (exports, module) {
 
 });

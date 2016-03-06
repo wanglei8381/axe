@@ -5,5 +5,5 @@
  * 加密操作
  */
 
-axe.define('crypto', function(exports,module){
+axe.define('crypto', function (exports, module) {
 });

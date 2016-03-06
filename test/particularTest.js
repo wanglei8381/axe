@@ -5,8 +5,8 @@
  *
  */
 
-var fn = function(){
-  if(typeof su === 'undefined') {
+var fn = function () {
+  if (typeof su === 'undefined') {
     var su = '123';
     console.log('@#$== : ' + su);
   }

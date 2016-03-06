@@ -28,3 +28,10 @@ ssh-keygen -t rsa -C "wanglei8381@163.com"
 git remote add origin git@github.com:wanglei8381/demo.git
 关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
 此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+
+//查看远程仓库
+git remote -v
+//从远程获取最新内容到本地
+git fetch origin master
+//仓库合并
+git merge origin/master

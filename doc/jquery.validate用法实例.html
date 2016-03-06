@@ -72,70 +72,70 @@
    * @type {*|jQuery}
    */
   var validator = $('#firstForm').validate({
-    debug:true,
+    debug: true,
     ignore: "radio",
-    submitHandler:function(form){
+    submitHandler: function (form) {
       alert("submitted");
     },
-    rules:{
-      name:{
-        required:true,
-        minlength:2,
-        maxlength:10,
-        remote:{
+    rules: {
+      name: {
+        required: true,
+        minlength: 2,
+        maxlength: 10,
+        remote: {
           type: 'post',
           url: 'validate.json'
         }
       },
-      password:{
-        required:true,
-        passwordValidate:true
+      password: {
+        required: true,
+        passwordValidate: true
       },
-      confirm_password:{
-        equalTo:'#password'
+      confirm_password: {
+        equalTo: '#password'
       },
-      email:{
-        required:true,
-        email:true,
-        rangelength:[6,30]
+      email: {
+        required: true,
+        email: true,
+        rangelength: [6, 30]
       },
-      age:{
-        required:true,
-        digits:true,
-        min:18,
-        max:32
+      age: {
+        required: true,
+        digits: true,
+        min: 18,
+        max: 32
       },
-      score:{
-        required:true,
-        number:true,
-        range:[60,100]
+      score: {
+        required: true,
+        number: true,
+        range: [60, 100]
       },
-      url:{
-        required:true,
-        url:true
+      url: {
+        required: true,
+        url: true
       },
-      sex:{
-        required:true
+      sex: {
+        required: true
       },
-      feeling:{
-        required:true,
-        minlength:2,
-        maxlength:3
+      feeling: {
+        required: true,
+        minlength: 2,
+        maxlength: 3
       },
-      birth:{
-        required:true
+      birth: {
+        required: true
       }
     }/*,
      errorElement:'span',
      wrapper:'li',
      errorClass:'error'*/
   });
-  $('#reset').click(function(){
+  $('#reset').click(function () {
     validator.resetForm();
   });
-  $.validator.addMethod('passwordValidate',function(val,ele){
+  $.validator.addMethod('passwordValidate', function (val, ele) {
     return /@+/.test(val);
-  },'密码格式不正确');
+  }, '密码格式不正确');
 </script>
 </body>
 </html>

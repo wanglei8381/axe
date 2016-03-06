@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh_CN">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="css/justifiedGallery.min.css">
+  <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery.justifiedGallery.min.js"></script>
+  <style>
+    .album-wrapper {
+      position: relative;
+    }
+
+    .album-number {
+      position: absolute;
+      color: #fff;
+      top: 10px;
+      right: 10px;
+      z-index: 2;
+
+    }
+
+    .album-description {
+      position: absolute;
+      width: 100%;
+      bottom: 5px;
+      vertical-align: middle;
+    }
+
+    .album-description a {
+      float: left;
+      display: block;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .album-description .a-txt {
+      line-height: 30px;
+    }
+
+    .album-description .belong-name {
+      margin-left: 5px;
+    }
+
+    .album-description .tuijian {
+      float: right;
+      margin-right: 5px;
+    }
+
+    .album-description a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .album-description .belong-icon {
+      height: 28px;
+      width: 28px;
+      border-radius: 50%;
+    }
+
+    .album-description .belong-icon-wrapper {
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+<div class="basicExample justified-gallery">
+  <div class="album-wrapper jg-entry">
+    <div class="album-number">500张</div>
+
+    <a href="/photo/56a96b170a41e0f0333bc19f">
+      <img src="http://7xobdo.com1.z0.glb.clouddn.com/IMG_4791_%E5%89%AF%E6%9C%AC.jpg?imageView2/1/w/440/">
+    </a>
+
+    <div class="album-description">
+      <a class="belong-icon-wrapper" href="/user/1242142134">
+        <img class="belong-icon"
+             src="http://himg.bdimg.com/sys/portrait/item/99d3e7ac91e69fb3e58d8ae9a699e5889d402e.jpg" alt=""/></a>
+      <a class="a-txt belong-name" href="/user/12454324">王磊</a>
+      <a class="a-txt tuijian" href="/user/12454324">推荐</a>
+    </div>
+  </div>
+
+  <div class="img-wrap jg-entry">
+    <a href="/photo/56a96b170a41e0f0333bc19f">
+      <img src="http://7xobdo.com1.z0.glb.clouddn.com/IMG_4791_%E5%89%AF%E6%9C%AC.jpg?imageView2/1/w/440/">
+    </a>
+  </div>
+
+  <div class="img-wrap jg-entry">
+    <a href="/photo/56a96b170a41e0f0333bc19f">
+      <img src="http://7xobdo.com1.z0.glb.clouddn.com/IMG_4791_%E5%89%AF%E6%9C%AC.jpg?imageView2/1/w/440/">
+    </a>
+  </div>
+</div>
+
+<script>
+  $('.basicExample').justifiedGallery({
+    rowHeight: 350,
+    lastRow: 'nojustify',
+    margins: 10
+  });
+</script>
+</body>
+</html>

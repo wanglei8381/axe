@@ -23,7 +23,8 @@
     </div>
     <button class="btn btn-default">click me</button>
     <p id="info"></p>
-    <img class="u-img" src="images/pos.png" />
+    <img class="u-img" src="images/pos.png"/>
+
     <div class="panel-body">
       js位置有关的属性之间的关系<br>
       screenX/screenY 点击点到电脑屏幕左上角的距离<br>
@@ -33,6 +34,7 @@
     </div>
     <button class="btn btn-default">click me</button>
     <p id="info2"></p>
+
     <div class="panel-body">
       js event有用的属性<br>
       button: 0, // 0左键，1中建，2右键<br>
@@ -50,44 +52,44 @@
   var info = document.getElementById('info');
   var info2 = document.getElementById('info2');
   function show(e) {
-    var html = 'screenX:'+ e.screenX+' , screenY:'+ e.screenY+' <br>';
-    html += 'clientX:'+ e.clientX+' , clientY:'+ e.clientY+' <br>';
-    html += 'x:'+ e.x+' , y:'+ e.y+' <br>';
-    html += 'layerX:'+ e.layerX+' ,  layerY:'+ e.layerY+' <br>';
-    html += 'pageX:'+ e.pageX+' ,  pageY:'+ e.pageY+' <br>';
-    html += 'scrollTop:'+ document.body.scrollTop+' , scrollLeft:'+ document.body.scrollLeft+' <br>';
-    html += 'offsetX:'+ e.offsetX+' , offsetY:'+ e.offsetY+' <br>';
+    var html = 'screenX:' + e.screenX + ' , screenY:' + e.screenY + ' <br>';
+    html += 'clientX:' + e.clientX + ' , clientY:' + e.clientY + ' <br>';
+    html += 'x:' + e.x + ' , y:' + e.y + ' <br>';
+    html += 'layerX:' + e.layerX + ' ,  layerY:' + e.layerY + ' <br>';
+    html += 'pageX:' + e.pageX + ' ,  pageY:' + e.pageY + ' <br>';
+    html += 'scrollTop:' + document.body.scrollTop + ' , scrollLeft:' + document.body.scrollLeft + ' <br>';
+    html += 'offsetX:' + e.offsetX + ' , offsetY:' + e.offsetY + ' <br>';
     info.innerHTML = html;
   }
-  panel.addEventListener('click', function(e){
-    alert('你的城市没有一扇窗'+arguments.length);
-  },false);
-  each(btn, function(obj,i){
-    switch(i) {
+  panel.addEventListener('click', function (e) {
+    alert('你的城市没有一扇窗' + arguments.length);
+  }, false);
+  each(btn, function (obj, i) {
+    switch (i) {
       case 0:
-        obj.addEventListener('click', function(e){
+        obj.addEventListener('click', function (e) {
           //e.stopPropagation();//阻止事件冒泡
           //e.stopImmediatePropagation();//除了阻止冒泡外还阻止自身的其它监听事件
           e.preventDefault();//阻止它的默认行为的发生而发生其他的事情。
           show(e);
-        },false);
+        }, false);
         break;
       case 1:
-        obj.addEventListener('click', function(e){
+        obj.addEventListener('click', function (e) {
           var html = '<h3>event对象的属性</h3><br>';
-          for(var key in e) {
+          for (var key in e) {
             html += key + ':' + e[key] + '<br>';
           }
           info2.innerHTML = html;
-        },false);
+        }, false);
         break;
       case 2:
         break;
     }
   });
-  function each(arr,callback){
-    for(var i = 0; i < arr.length; i++) {
-      callback(arr[i],i,arr);
+  function each(arr, callback) {
+    for (var i = 0; i < arr.length; i++) {
+      callback(arr[i], i, arr);
     }
   }
 </script>

@@ -5,7 +5,7 @@
  * 树的创建
  */
 
-axe.define('tree', function(exports,module){
+axe.define('tree', function (exports, module) {
 
   function Node(id, pid, name, obj) {
     this.id = id;
@@ -107,18 +107,18 @@ axe.define('tree', function(exports,module){
 
   }
 
-  Tree.prototype.render = function (node){
+  Tree.prototype.render = function (node) {
     var str = '';
-    if(node._hc) {
+    if (node._hc) {
       str += this.creatTree(node);
     } else {
     }
     return str;
   }
 
-  Tree.prototype.indent = function (node){
+  Tree.prototype.indent = function (node) {
     var str = '';
-    for(var i = 0; i < this.indents.length; i++) {
+    for (var i = 0; i < this.indents.length; i++) {
       str += '<img src="' + ( this.indents[i] ? this.icon.empty : this.icon.line ) + '" alt="" />';
     }
     this.indents.push(node._ls);
@@ -126,24 +126,24 @@ axe.define('tree', function(exports,module){
     return str;
   }
 
-  function print(node){
+  function print(node) {
     var str = '节点： ' + node.name;
-    if(node._p) {
+    if (node._p) {
       str += ' 父节点： ' + (node._p.name || '*');
     }
-    if(node._l) {
+    if (node._l) {
       str += ' 左节点： ' + node._l.name;
     } else {
       str += ' 左节点： *'
     }
-    if(node._r) {
+    if (node._r) {
       str += ' 右节点： ' + node._r.name;
     } else {
       str += ' 右节点： *'
     }
   }
 
-  exports.tree = function(name, root){
+  exports.tree = function (name, root) {
     return new Tree(name, root);
   };
 

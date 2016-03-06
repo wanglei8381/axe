@@ -1,4 +1,4 @@
-axe.define('util', function(exports,module){
+axe.define('util', function (exports, module) {
 
   /**
    * ����������ʽ��ȡ��ַ������
@@ -21,16 +21,16 @@ axe.define('util', function(exports,module){
   }
 
 //�ж��Ƿ�֧��css3d
-  var supports3d = function() {
+  var supports3d = function () {
     var div = document.createElement('div'),
       ret = false,
       properties = ['perspectiveProperty', 'WebkitPerspective'];
-    for (var i = properties.length - 1; i >= 0; i--){
+    for (var i = properties.length - 1; i >= 0; i--) {
       ret = ret ? ret : div.style[properties[i]] !== undefined;
     }
 
     //���webkit 3d transforms������,��Ȼ�﷨�ϼ��û���⣬���ǻ��ǲ�֧��
-    if (ret){
+    if (ret) {
       var st = document.createElement('style');
       // webkit allows this media query to succeed only if the feature is enabled.
       // "@media (transform-3d),(-o-transform-3d),(-moz-transform-3d),(-ms-transform-3d),(-webkit-transform-3d),(modernizr){#modernizr{height:3px}}"
@@ -48,12 +48,12 @@ axe.define('util', function(exports,module){
   /**
    * �����δ���
    */
-  var isSupports3d = (function(){
+  var isSupports3d = (function () {
     var supports = null;
-    if(!supports){
+    if (!supports) {
       supports = supports3d();
     }
-    return function(){
+    return function () {
       return supports;
     };
   })();

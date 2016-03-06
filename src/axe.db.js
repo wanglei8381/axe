@@ -5,6 +5,6 @@
  * 数据库操作
  */
 
-axe.define('db', function(exports,module){
+axe.define('db', function (exports, module) {
 
 });

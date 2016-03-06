@@ -44,7 +44,7 @@ axe.define('device', function (exports, module, _alias) {
   };
 
   //摇晃事件
-  var motion = function(options,callback){
+  var motion = function (options, callback) {
 
     if (window.DeviceMotionEvent) {
       window.addEventListener('devicemotion', deviceMotionHandler, false);
@@ -53,33 +53,34 @@ axe.define('device', function (exports, module, _alias) {
     }
 
     var SHAKE_THRESHOLD = 600, DIFF_TIME = 300;
-    if(Object.isPlainObject(options)) {
+    if (Object.isPlainObject(options)) {
       var speed = +options.speed;
-      if(speed) {
+      if (speed) {
         SHAKE_THRESHOLD = speed;
       }
       var diff = +options.diff;
-      if(diff) {
+      if (diff) {
         DIFF_TIME = diff;
       }
     }
-    if(arguments.length == 1) {
+    if (arguments.length == 1) {
       callback = options;
     }
     var x = y = z = lastX = lastY = lastZ = 0;
     var last_update = 0;
+
     function deviceMotionHandler(event) {
       var curTime = new Date().getTime();
       var diffTime = curTime - last_update;
-      if(diffTime > DIFF_TIME) {
+      if (diffTime > DIFF_TIME) {
         last_update = curTime;
         var acceleration = event.accelerationIncludingGravity;
         x = acceleration.x;
         y = acceleration.y;
         z = acceleration.z;
-        var speed = Math.abs(x +y + z - lastX - lastY - lastZ) / diffTime * 10000;
+        var speed = Math.abs(x + y + z - lastX - lastY - lastZ) / diffTime * 10000;
         if (speed > SHAKE_THRESHOLD) {
-          if(Object.isFunction(callback)) {
+          if (Object.isFunction(callback)) {
             callback();
           }
           document.body.style.backgroundColor = color[Math.round(Math.random() * 10) % 6];

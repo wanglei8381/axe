@@ -1,8 +1,8 @@
-(function(root, factory) {
+(function (root, factory) {
 
   // AMD
   if (typeof define === "function" && define.amd) {
-    define(["exports", "jquery"], function(exports, $) {
+    define(["exports", "jquery"], function (exports, $) {
       return factory(exports, $);
     });
   }
@@ -18,21 +18,21 @@
     factory(root, (root.jQuery || root.Zepto || root.ender || root.$));
   }
 
-}(this, function(exports, $) {
+}(this, function (exports, $) {
 
   var patterns = {
     validate: /^[a-z_][a-z0-9_]*(?:\[(?:\d*|[a-z0-9_]+)\])*$/i,
-    key:      /[a-z0-9_]+|(?=\[\])/gi,
-    push:     /^$/,
-    fixed:    /^\d+$/,
-    named:    /^[a-z0-9_]+$/i
+    key: /[a-z0-9_]+|(?=\[\])/gi,
+    push: /^$/,
+    fixed: /^\d+$/,
+    named: /^[a-z0-9_]+$/i
   };
 
   function FormSerializer(helper, $form) {
 
     // private variables
-    var data     = {},
-      pushes   = {};
+    var data = {},
+      pushes = {};
 
     // private API
     function build(base, key, value) {
@@ -93,7 +93,7 @@
       if (!helper.isArray(pairs)) {
         throw new Error("formSerializer.addPairs expects an Array");
       }
-      for (var i=0, len=pairs.length; i<len; i++) {
+      for (var i = 0, len = pairs.length; i < len; i++) {
         this.addPair(pairs[i]);
       }
       return this;
@@ -130,7 +130,7 @@
 
   if (typeof $.fn !== "undefined") {
     $.fn.serializeObject = FormSerializer.serializeObject;
-    $.fn.serializeJSON   = FormSerializer.serializeJSON;
+    $.fn.serializeJSON = FormSerializer.serializeJSON;
   }
 
   exports.FormSerializer = FormSerializer;

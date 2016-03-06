@@ -5,14 +5,14 @@
  * 树的创建
  */
 
-axe.define('storage', function(exports,module,_alias) {
+axe.define('storage', function (exports, module, _alias) {
 
   var mark = '%3C%3Ct%40t%3E%3E';
   var encode = _alias.encode;
   var decode = _alias.decode;
   var log = _alias.log;
 
-  var storage = function(key, val, time) {
+  var storage = function (key, val, time) {
 
     var handlerStorage = localStorage;
     var type = false;
@@ -68,7 +68,7 @@ axe.define('storage', function(exports,module,_alias) {
     }
   };
 
-  var removeStorage = function(key, type) {
+  var removeStorage = function (key, type) {
     var handlerStorage = localStorage;
     if (typeof type === 'boolean' || typeof key === 'boolean') {
       handlerStorage = sessionStorage;
@@ -80,7 +80,7 @@ axe.define('storage', function(exports,module,_alias) {
         break;
 
       case 1:
-        if(typeof key === 'boolean') {
+        if (typeof key === 'boolean') {
           handlerStorage.clear();
         } else {
           handlerStorage.removeItem(key);

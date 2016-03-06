@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh_CN">
+  <meta charset="UTF-8">
+  <title>FILE API</title>
+</head>
+<body>
+<form action="/home/index" method="POST" novalidate="true">
+  <input type="file" multiple="multiple" name="fileDemo" id="multipleFile"/><br/>
+  <input type="button" value="获取文件的名字" id="btnGetFile"/>
+</form>
+<input type="file" name="fileDemo" id="fileDemo"/>
+    <input type="button" value="readAsDataURL" id="readAsDataURL" onclick="showDataByURL();"/>
+    <input type="button" value="readAsBinaryString"   id="readAsBinaryString" onclick="showDataByBinaryString();"/>
+    <input type="button" value="readAsText"   id="readAsText" onclick="showDataByText();"/>
+    
+<div id="result">
+           
+      
+</div>
+
+<script type="text/javascript">
+  var btn = document.getElementById('btnGetFile');
+  //FileList
+  btn.onclick = function (e) {
+    var fileList = document.getElementById("multipleFile").files;
+    for (var i = 0; i < fileList.length; i++) {
+      var imgType = /image\/\w+/;
+      console.log(fileList[i].type);
+    }
+  };
+
+  if (typeof FileReader == "undified") {
+    alert("您老的浏览器不行了！");
+  }
+
+  function showDataByURL() {
+    var resultFile = document.getElementById("fileDemo").files[0];
+    if (resultFile) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(resultFile);
+      reader.onload = function (e) {
+        var urlData = this.result;
+        document.getElementById("result").innerHTML += "<img src='" + urlData + "' alt='" + resultFile.name + "' />";
+      };
+
+    }
+
+  }
+
+  function showDataByBinaryString() {
+    var resultFile = document.getElementById("fileDemo").files[0];
+    if (resultFile) {
+      var reader = new FileReader();
+      //异步方式，不会影响主线程
+      reader.readAsBinaryString(resultFile);
+
+      reader.onload = function (e) {
+        var urlData = this.result;
+        document.getElementById("result").innerHTML += urlData;
+      };
+    }
+  }
+
+
+  function showDataByText() {
+    var resultFile = document.getElementById("fileDemo").files[0];
+    if (resultFile) {
+      var reader = new FileReader();
+
+      reader.readAsText(resultFile, 'gb2312');
+      reader.onload = function (e) {
+        var urlData = this.result;
+        document.getElementById("result").innerHTML += urlData;
+      };
+    }
+  }
+</script>
+</body>
+</html>
