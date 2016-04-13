@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh_CN">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<script>
+
+  window.addEventListener("storage",function(e){
+    alert('sss');
+    console.log(e.key, e.oldValue, e.newValue);
+  },false);
+
+  localStorage.setItem('@_key','wanglei2');
+
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <title>风影</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="sign_up.css">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+<body>
+
+<!-- 错误提示信息 -->
+<div class="alert alert-danger" id="error-msg" role="alert">error</div>
+
+<div class="g-head">
+  <ul class="nav navbar-nav navbar-right">
+    <li>
+      <a href="/login" title="登录" class="start-btn"><span class="glyphicon glyphicon-user"></span>会员登录</a>
+    </li>
+    <li>
+      <a href="/signup" title="注册" class="start-btn"><span class="glyphicon glyphicon-edit"></span>注册</a>
+    </li>
+    <li>
+      <a href="/" title="首页" class="start-btn"><span class="glyphicon glyphicon-camera"></span>风影网</a>
+    </li>
+  </ul>
+</div>
+
+<div class="container">
+  <div class="g-sign">
+    <h1>风影</h1>
+
+    <h3>摄影师自己的家园</h3>
+
+    <form class="form-inline">
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-addon">邮箱</div>
+          <input type="text" class="form-control u-218" id="exampleInputAmount" placeholder="你的邮箱地址">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-addon">验证码</div>
+          <input type="text" class="form-control u-110" placeholder="6位验证码">
+          <button type="submit" class="btn btn-primary">获取验证码</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-addon">昵称</div>
+          <input type="text" class="form-control u-218" placeholder="选择一个不一样的昵称">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-addon">密码</div>
+          <input type="text" class="form-control u-218" placeholder="密码长度至少6位">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" checked> 我已经认真阅读并同意接受 <a href="#">用户协议</a>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <button type="submit" class="btn btn-success u-sign">注册</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="login-sns">
+      <p>您还可以通过以下方式直接登录</p>
+      <ul class="login-list">
+        <li class="weibo">
+          <a href="#"><i class="fa fa-weibo"></i></a>
+        </li>
+        <li class="qq">
+          <a href="/qq/login"><i class="fa fa-qq"></i></a>
+        </li>
+        <li class="wechat">
+          <a href="/wechat/login"><i class="fa fa-wechat"></i></a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+  <!-- g-sign -->
+
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script>
+
+  var error = {
+    $el: $('#error-msg'),
+    init: function () {
+      this.errorHeight = this.$el.outerHeight();
+      this.$el.css('left', ($(window).width() - this.$el.width()) / 2).css('top', -this.errorHeight);
+      return this;
+    },
+    show: function (msg) {
+      var self = this;
+      this.$el.text(msg);
+      this.$el.animate({
+        top: 0
+      }, 1000, function () {
+        setTimeout(function () {
+          self.$el.animate({
+            top: -self.errorHeight
+          }, 1000);
+        }, 3000);
+      });
+    }
+  };
+
+  error.init().show('hello');
+</script>
+</body>
+</html>
