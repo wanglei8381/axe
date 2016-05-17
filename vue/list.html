@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh_CN">
+  <meta charset="UTF-8">
+  <title>VUE—LIST</title>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <li v-for="todo in todos">
+      {{todo.msg}}
+    </li>
+  </ul>
+</div>
+<script src="//cdn.bootcss.com/vue/1.0.24/vue.js"></script>
+<script>
+
+  new Vue({
+    el: '#app',
+    data: {
+      todos: [
+        {msg:'appcan'},
+        {msg:'apicloud'}
+      ]
+    }
+  });
+
+</script>
+</body>
+</html>

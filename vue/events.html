@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh_CN">
+  <meta charset="UTF-8">
+  <title>VUE—EVENTS</title>
+</head>
+<body>
+<div id="app">
+  <p>{{ message }}</p>
+  <button v-on:click="reverseMessage">Reverse Message</button>
+</div>
+<script src="//cdn.bootcss.com/vue/1.0.24/vue.js"></script>
+<script>
+
+  new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue.js!'
+    },
+    methods: {
+      reverseMessage: function () {
+        this.message = this.message.split('').reverse().join('')
+      }
+    }
+  });
+
+</script>
+</body>
+</html>
